@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.myapplication.widget.autoscrollviewpager.AutoScrollViewPager
+        android:id="@+id/vp_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.myapplication.widget.autoscrollviewpager.AutoScrollViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_30"
+        android:layout_alignBottom="@id/vp_news"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.myapplication.widget.autoscrollviewpager.CirclePageIndicator
+            android:id="@+id/pi_news_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_5" />
+
+    </LinearLayout>
+</RelativeLayout>

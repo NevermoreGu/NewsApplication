@@ -1,0 +1,65 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">"我的新闻"</string>
+
+    <!--maintab-->
+    <string name="main_tab_news">首页</string>
+    <string name="main_tab_video">视听</string>
+    <string name="main_tab_explore">发现</string>
+    <string name="main_tab_my">我的</string>
+
+
+    <string name="loading">加载中…</string>
+    <string name="loading_no_more">已加载全部</string>
+
+    <!-- Error View -->
+    <string name="error_view_click_to_refresh">点击屏幕,重新加载</string>
+    <string name="error_view_no_data">暂无内容</string>
+    <string name="error_view_loading">加载中…</string>
+    <string name="error_view_load_error_click_to_refresh">内容加载失败\r\n点击重新加载</string>
+    <string name="error_view_network_error_click_to_refresh">没有可用的网络</string>
+    <string name="tip_network_error">没有可用的网络</string>
+
+    <string name="unlogin">未登录，请先登录</string>
+    <string name="unlogin_tip">您还未登录\r\n或网络延迟</string>
+    <string name="my_information_unlogin_tips">未登录</string>
+
+    <string name="hint_username">输入账号/邮箱</string>
+    <string name="hint_password">密码</string>
+    <string name="login">登录</string>
+    <string name="tip_please_input_username">请输入用户名</string>
+    <string name="tip_illegal_email">请输入正确的email地址</string>
+    <string name="tip_please_input_password">请输入密码</string>
+    <string name="progress_login">正在登录…</string>
+    <string name="tip_login_error_for_network">对不起,无法登录</string>
+    <string name="tip_no_internet">当前没有可用的网络链接</string>
+    <string name="img_description">图片</string>
+    <string name="other_login">还可以选择以下方式登录</string>
+
+    <!--picture-->
+    <string name="select_picture_album_all">相机胶卷</string>
+    <string name="select_picture_album">选择相册</string>
+    <string name="select_picture_album_button">相册</string>
+    <string name="select_picture_cancel">取消</string>
+    <string name="select_picture_back">返回</string>
+    <string name="select_picture_delete">删除</string>
+    <string name="select_picture_take">拍摄照片</string>
+    <string name="select_picture_preview_image">图片预览</string>
+    <string name="select_picture_msg_no_camera">没有系统相机</string>
+    <string name="select_picture_msg_amount_limit">已经达到最高选择数量</string>
+    <string name="select_picture_images_building">处理图片</string>
+    <string name="facebook_app_id">1444817025830662</string>
+    <!--crop-->
+    <string name="crop__saving">正在保存照片…</string>
+    <string name="crop__wait">请等待…</string>
+    <string name="crop__pick_error">无效的图片</string>
+
+    <string name="crop__done" >完成</string>
+    <string name="crop__cancel" tools:ignore="ButtonCase">取消</string>
+
+    <string name="china">中国</string>
+    <string name="province">省</string>
+    <string name="city">市</string>
+    <string name="area1">区</string>
+    <string name="county">县</string>
+    <string name="no_data">不能为空</string>
+</resources>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="rules-0.3-release-no-dep">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/rules-0.3-release-no-dep.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

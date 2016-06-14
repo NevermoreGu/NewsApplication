@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.myapplication">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- renren sso Permission for Unit Test -->
+    <!-- QQ、QQ空间所需权限 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+
+    <application
+        android:name=".base.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="7c12e3c857e2ef5479d8074225002503" />
+
+        <!-- 定位需要的服务 -->
+        <service android:name="com.amap.api.location.APSService" />
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".activity.SplashActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".activity.NewsDetailActivity"
+            android:label="@string/app_name">
+
+        </activity>
+        <activity android:name=".activity.SelectPicturesActivity"></activity>
+        <activity android:name=".activity.PicturesBrowseActivity"></activity>
+        <activity
+            android:name=".activity.ParallaxToolbarScrollViewActivity"
+
+            android:theme="@style/AppTheme.Toolbar">
+
+        </activity>
+        <activity android:name="com.myapplication.ui.crop.CropImageActivity" />
+        <activity android:name=".activity.TestActivity"></activity>
+        <activity android:name=".activity.MyPositionActivity"></activity>
+        <!--&lt;!&ndash;第三方&ndash;&gt;-->
+        <!--&lt;!&ndash;友盟社会化分享&ndash;&gt;-->
+        <!--<meta-data-->
+        <!--android:name="UMENG_CHANNEL"-->
+        <!--android:value="Umeng">-->
+        <!--</meta-data>-->
+        <!--&lt;!&ndash; 友盟AppKey， 需要替换成你自己的 &ndash;&gt;-->
+        <!--<meta-data-->
+        <!--android:name="UMENG_APPKEY"-->
+        <!--android:value="4eaee02c527015373b000003">-->
+        <!--</meta-data>-->
+        <!--&lt;!&ndash; 4eaee02c527015373b000003 &ndash;&gt;-->
+        <!--&lt;!&ndash; android:value="52a98cf856240b902211203e" > &ndash;&gt;-->
+
+
+        <!--&lt;!&ndash; *************************    分享相关的注册 START **************************** &ndash;&gt;-->
+        <!--&lt;!&ndash; 分享内容编辑页 &ndash;&gt;-->
+        <!--<activity-->
+        <!--android:name="com.umeng.socialize.view.ShareActivity"-->
+        <!--android:configChanges="orientation|keyboard"-->
+        <!--android:launchMode="singleTask"-->
+        <!--android:noHistory="true"-->
+        <!--android:theme="@style/Theme.UMDialog"-->
+        <!--android:windowSoftInputMode="stateVisible|adjustResize">-->
+        <!--</activity>-->
+
+        <!--&lt;!&ndash; 腾讯SSO授权的Activity注册 &ndash;&gt;-->
+        <!--<activity-->
+        <!--android:name="com.tencent.tauth.AuthActivity"-->
+        <!--android:launchMode="singleTask"-->
+        <!--android:noHistory="true">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.VIEW"/>-->
+
+        <!--<category android:name="android.intent.category.DEFAULT"/>-->
+        <!--<category android:name="android.intent.category.BROWSABLE"/>-->
+
+        <!--<data android:scheme="tencent100424468"/>-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--<activity-->
+        <!--android:name="com.tencent.connect.common.AssistActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"/>-->
+
+        <!--&lt;!&ndash; 微信回调activity &ndash;&gt;-->
+        <!--<activity-->
+        <!--android:name=".wxapi.WXEntryActivity"-->
+        <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+        <!--android:exported="true"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"/>-->
+
+        <!--&lt;!&ndash; 易信回调activity &ndash;&gt;-->
+        <!--<activity-->
+        <!--android:name=".yxapi.YXEntryActivity"-->
+        <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+        <!--android:exported="true"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"/>-->
+
+        <!--&lt;!&ndash; 人人SSO授权所需的OAuthActivity &ndash;&gt;-->
+        <!--<activity-->
+        <!--android:name="com.renn.rennsdk.oauth.OAuthActivity"-->
+        <!--android:configChanges="orientation|navigation|keyboardHidden"/>-->
+
+        <!--&lt;!&ndash; facebook相关 &ndash;&gt;-->
+        <!--<activity-->
+        <!--android:name="com.facebook.FacebookActivity"-->
+        <!--android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"-->
+        <!--android:label="@string/app_name"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"/>-->
+
+        <!--<provider-->
+        <!--android:name="com.facebook.FacebookContentProvider"-->
+        <!--android:authorities="com.facebook.app.FacebookContentProvider1444817025830662"-->
+        <!--android:exported="true"/>-->
+
+        <!--<meta-data-->
+        <!--android:name="com.facebook.sdk.ApplicationId"-->
+        <!--android:value="@string/facebook_app_id"/>-->
+
+        <!--&lt;!&ndash; *************************    分享相关的注册 END **************************** &ndash;&gt;-->
+    </application>
+
+</manifest>

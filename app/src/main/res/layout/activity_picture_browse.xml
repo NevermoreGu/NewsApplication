@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_1.5"
+        android:background="@color/line_divider"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/space_40"
+        android:layout_marginTop="@dimen/space_40">
+
+        <com.myapplication.widget.autoscrollviewpager.AutoScrollViewPager
+            android:id="@+id/vp_picture_browse"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:id="@+id/ll_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/space_10">
+
+            <CheckBox
+                android:id="@+id/checkmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/camerasdk_selector_checkbox"
+                android:checked="false"
+                android:clickable="false"
+                android:focusable="false"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_1.5"
+        android:background="@color/line_divider"/>
+
+    <GridView
+        android:id="@+id/gv_select_pictures"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/space_10"
+        android:background="@color/white"
+        android:horizontalSpacing="@dimen/space_2"
+        android:listSelector="@color/transparent"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/space_2"/>
+
+</LinearLayout>
+
