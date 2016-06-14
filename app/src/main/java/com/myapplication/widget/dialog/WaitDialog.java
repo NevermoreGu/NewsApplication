@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.myapplication.R;
 
 
-public class WaitDialog extends Dialog {
+public class WaitDialog extends Dialog implements DialogControl{
 
     public WaitDialog(Context context) {
         super(context);
@@ -75,5 +75,26 @@ public class WaitDialog extends Dialog {
 
     public static void cancelProgressDialog(WaitDialog waitDialog) {
         waitDialog.dismiss();
+    }
+
+    @Override
+    public void hideProgressDialog() {
+
+    }
+
+    @Override
+    public Dialog showProgressDialog() {
+
+        return null;
+    }
+
+    @Override
+    public Dialog showProgressDialog(int resId) {
+        return null;
+    }
+
+    @Override
+    public Dialog showProgressDialog(String text) {
+        return null;
     }
 }
