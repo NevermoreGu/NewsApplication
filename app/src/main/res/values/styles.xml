@@ -98,4 +98,15 @@
         <item name="android:drawableLeft">@drawable/crop__ic_cancel</item>
         <item name="android:text">@string/crop__cancel</item>
     </style>
+
+    <!-- waitDialog -->
+    <style name="style_loading_progress" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

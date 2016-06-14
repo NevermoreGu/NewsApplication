@@ -7,6 +7,8 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.myapplication.widget.dialog.WaitDialog;
+
 import org.apache.http.conn.ConnectTimeoutException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,7 +49,7 @@ public abstract class NetUICallBack<T> extends NetCallBack<T> {
 //            progressDialog = ProgressDialog.show(mContext,null, null ,
 //                    false,false);
             if (waitDialog == null) {
-                waitDialog = DialogHelper.getWaitDialog(mContext, "加载中...");
+//                waitDialog = new WaitDialog(mContext, "加载中...");
             }
             if (waitDialog != null && !waitDialog.isShowing()) {
                 waitDialog.show();

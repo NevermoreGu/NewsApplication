@@ -8,6 +8,5 @@ public abstract class NetCallBack<T> {
 
     public abstract void onErrorResponse(Exception e);
 
-    public void onFinish() {
-    }
+    public void onFinish() {}
 }
