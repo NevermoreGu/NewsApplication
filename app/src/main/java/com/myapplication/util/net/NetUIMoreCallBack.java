@@ -17,10 +17,7 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-/**
- * Created by W.
- */
-public abstract class NetUIMoreCallBack <T> extends NetCallBack<T>  {
+public abstract class NetUIMoreCallBack <T> extends NetCallBack  {
 
     HERecyclerView heRecyclerView;
     Gson gson;

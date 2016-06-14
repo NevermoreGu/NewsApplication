@@ -1,17 +1,12 @@
 package com.myapplication.util.net;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.TextUtils;
-import android.widget.Toast;
 
-import com.myapplication.widget.dialog.WaitDialog;
+import com.myapplication.widget.dialog.DialogControl;
 
 import org.apache.http.conn.ConnectTimeoutException;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -21,15 +16,16 @@ import java.net.UnknownHostException;
 
 public abstract class NetUICallBack<T> extends NetCallBack<T> {
 
-    Context mContext;
-    Handler mHandler;
-    ProgressDialog progressDialog;
-    boolean showProgress = true;
-    private WaitDialog waitDialog;
+    private Context mContext;
+    private Handler mHandler;
+    private boolean showProgress = true;
+    private DialogControl progress;
 
-    public NetUICallBack(Context context) {
-        mContext = context;
-        mHandler = new Handler(Looper.getMainLooper());
+
+    public NetUICallBack(Context context, DialogControl progress) {
+        this.mContext = context;
+        this.progress = progress;
+        this.mHandler = new Handler(Looper.getMainLooper());
     }
 
     public NetUICallBack hide() {
@@ -42,84 +38,19 @@ public abstract class NetUICallBack<T> extends NetCallBack<T> {
         return this;
     }
 
-
     @Override
     public void onStart() {
         if (showProgress) {
-//            progressDialog = ProgressDialog.show(mContext,null, null ,
-//                    false,false);
-            if (waitDialog == null) {
-//                waitDialog = new WaitDialog(mContext, "加载中...");
-            }
-            if (waitDialog != null && !waitDialog.isShowing()) {
-                waitDialog.show();
-            }
+            progress.showProgressDialog();
         }
-
     }
 
     @Override
     public void onResponse(final T response) {
-        if (response instanceof String) {
-            String js = (String) response;
-            try {
-                JSONObject json = new JSONObject(js);
-                int result = json.getInt("result");
-                if (result == 0) {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            uiSucess(response);
-                        }
-                    });
-                } else {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            uiError(response);
-                        }
-                    });
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        } else {
-
-            BaseBean bean = (BaseBean) response;
-            if (bean instanceof AvailableObjListBean) {
-                if (bean.result == 0 || bean.result == 11) {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            uiSucess(response);
-                        }
-                    });
-                }
-                return;
-            }
-            if (bean.result == 0) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        uiSucess(response);
-                    }
-                });
-            } else {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        uiError(response);
-                    }
-                });
-            }
-
-        }
-
     }
 
     @Override
-    public void onFauile(final Exception e) {
+    public void onErrorResponse(final Exception e) {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -143,7 +74,7 @@ public abstract class NetUICallBack<T> extends NetCallBack<T> {
                     error = "网络连接中断";
                 }
 
-                uiFauile(error);
+//                uiFauile(error);
             }
         });
     }
@@ -154,31 +85,31 @@ public abstract class NetUICallBack<T> extends NetCallBack<T> {
 //            progressDialog.dismiss();
 //            progressDialog = null;
 //        }
-        if (waitDialog != null) {
-            waitDialog.dismiss();
-            waitDialog = null;
-        }
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                uiFinish();
-            }
-        });
+//        if (waitDialog != null) {
+//            waitDialog.dismiss();
+//            waitDialog = null;
+//        }
+//        mHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                uiFinish();
+//            }
+//        });
     }
 
-    public abstract void uiSucess(T response);
-
-    public void uiError(T response) {
-        final BaseBean bean = (BaseBean) response;
-        if (!TextUtils.isEmpty(bean.resultNote)) {
-            Toast.makeText(mContext, bean.resultNote, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public void uiFauile(String error) {
-        Toast.makeText(mContext, error, Toast.LENGTH_LONG).show();
-    }
-
-    public void uiFinish() {
-    }
+//    public abstract void uiSucess(T response);
+//
+//    public void uiError(T response) {
+//        final BaseBean bean = (BaseBean) response;
+//        if (!TextUtils.isEmpty(bean.resultNote)) {
+//            Toast.makeText(mContext, bean.resultNote, Toast.LENGTH_LONG).show();
+//        }
+//    }
+//
+//    public void uiFauile(String error) {
+//        Toast.makeText(mContext, error, Toast.LENGTH_LONG).show();
+//    }
+//
+//    public void uiFinish() {
+//    }
 }

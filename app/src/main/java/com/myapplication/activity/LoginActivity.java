@@ -15,7 +15,11 @@ import android.widget.Toast;
 import com.myapplication.R;
 import com.myapplication.base.BaseActivity;
 import com.myapplication.ui.crop.Crop;
+import com.myapplication.util.net.NetBuilder;
+import com.myapplication.util.net.NetUICallBack;
+import com.myapplication.util.net.VolleyNet;
 import com.myapplication.widget.DeleteEditText;
+import com.myapplication.widget.dialog.WaitDialog;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -53,6 +57,29 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
 
     @Override
     public void initView() {
+        WaitDialog waitDialog = new WaitDialog(LoginActivity.this);
+        NetBuilder builder = new NetBuilder.Builder().callback(new NetUICallBack(LoginActivity.this, waitDialog) {
+            @Override
+            public void onStart() {
+                super.onStart();
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                super.onResponse(response);
+            }
+
+            @Override
+            public void onErrorResponse(Exception e) {
+                super.onErrorResponse(e);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+            }
+        }).build();
+        VolleyNet.getInstance(LoginActivity.this).addToRequestQueue("", builder);
         etLoginName.addTextChangedListener(this);
         etLoginPass.addTextChangedListener(this);
         tvLoginForgetPass.setOnClickListener(this);
