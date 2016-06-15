@@ -1,4 +1,4 @@
-package com.myapplication.ui.list;
+package com.myapplication.model.list;
 
 import java.util.ArrayList;
 import java.util.List;

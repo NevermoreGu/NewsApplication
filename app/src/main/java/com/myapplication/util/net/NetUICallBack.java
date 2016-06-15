@@ -1,9 +1,5 @@
 package com.myapplication.util.net;
 
-import android.content.Context;
-
-import com.myapplication.widget.dialog.DialogControl;
-
 import org.apache.http.conn.ConnectTimeoutException;
 
 import java.io.IOException;
@@ -14,31 +10,11 @@ import java.net.UnknownHostException;
 
 public abstract class NetUICallBack<T> extends NetCallBack<T> {
 
-    private Context context;
-    private DialogControl progress;
-    private boolean showProgress = true;
-
-    public NetUICallBack(Context context, DialogControl progress) {
-        this.context = context;
-        this.progress = progress;
-    }
-
-    public NetUICallBack(Context context, DialogControl progress, boolean showProgress) {
-        this.context = context;
-        this.progress = progress;
-        this.showProgress = showProgress;
-    }
+    @Override
+    public void onStart() {}
 
     @Override
-    public void onStart() {
-        if (showProgress) {
-            progress.showProgressDialog(context);
-        }
-    }
-
-    @Override
-    public void onResponse(T response) {
-    }
+    public void onResponse(T response) {}
 
     @Override
     public void onErrorResponse(Exception e) {
@@ -67,11 +43,7 @@ public abstract class NetUICallBack<T> extends NetCallBack<T> {
     }
 
     @Override
-    public void onFinish() {
-        if (showProgress) {
-            progress.hideProgressDialog();
-        }
-    }
+    public void onFinish() {}
 
     public void uiErrorResponse(String error) {
     }

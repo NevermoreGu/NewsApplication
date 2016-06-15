@@ -3,8 +3,8 @@ package com.myapplication.bean;
 import com.myapplication.api.MyApi;
 import com.myapplication.event.EventCenter;
 import com.myapplication.event.ListAndHeadDataEvent;
-import com.myapplication.ui.list.ListPageInfo;
-import com.myapplication.ui.list.PagedListAndHeadDataModel;
+import com.myapplication.model.list.ListPageInfo;
+import com.myapplication.model.list.PagedListAndHeadDataModel;
 import com.myapplication.util.GsonUtil;
 
 import java.util.ArrayList;

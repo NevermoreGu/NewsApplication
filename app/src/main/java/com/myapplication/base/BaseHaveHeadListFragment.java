@@ -16,8 +16,6 @@ import com.myapplication.R;
 import com.myapplication.bean.Entity;
 import com.myapplication.bean.Result;
 import com.myapplication.cache.CacheManager;
-import com.myapplication.event.EventCenter;
-import com.myapplication.event.SimpleEventHandler;
 import com.myapplication.ui.Drawable.RentalsSunHeaderView;
 import com.myapplication.util.TDevice;
 import com.myapplication.util.volleyUtils.StrErrListener;
@@ -412,7 +410,7 @@ public abstract class BaseHaveHeadListFragment<T1 extends Entity, T2 extends Ent
 
     protected void executeOnLoadDataSuccess(T2 data) {
         if (data == null) {
-            mErrorLayout.setErrorType(EmptyLayout.NODATA);
+            mErrorLayout.setErrorType(EmptyLayout.NO_DATA);
             return;
         }
         executeDataSuccess(data);

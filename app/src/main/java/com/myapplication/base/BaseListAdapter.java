@@ -14,7 +14,7 @@ import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.myapplication.R;
 import com.myapplication.bean.Entity;
-import com.myapplication.ui.list.ListPageInfo;
+import com.myapplication.model.list.ListPageInfo;
 import com.myapplication.util.TDevice;
 import com.myapplication.util.volleyUtils.VolleyUtils;
 

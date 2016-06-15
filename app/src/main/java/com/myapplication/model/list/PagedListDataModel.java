@@ -1,10 +1,11 @@
-package com.myapplication.ui.list;
+package com.myapplication.model.list;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.myapplication.event.EventCenter;
 import com.myapplication.event.ListDataEvent;
 import com.myapplication.util.TDevice;
+import com.myapplication.util.net.NetUICallBack;
 import com.myapplication.util.volleyUtils.StrErrListener;
 
 import java.util.ArrayList;
@@ -74,6 +75,17 @@ public abstract class PagedListDataModel<T> {
                 .append(mListPageInfo.getPage()).toString();
     }
 
+    protected void readCacheData() {
+        Observable<String> observable = Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+
+            }
+        });
+    }
+
+    protected void saveCacheData() {}
+
     /**
      * 判断是否需要读取缓存的数据
      *
@@ -100,6 +112,23 @@ public abstract class PagedListDataModel<T> {
         }
     };
 
+    protected NetUICallBack netUICallBack = new NetUICallBack() {
+        @Override
+        public void onResponse(Object response) {
+            super.onResponse(response);
+        }
+
+        @Override
+        public void onFinish() {
+            super.onFinish();
+        }
+
+        @Override
+        public void uiErrorResponse(String error) {
+            super.uiErrorResponse(error);
+        }
+    };
+
     protected void onRequestFinish(String response) {
 
         listData = parseListData(response);
@@ -108,7 +137,7 @@ public abstract class PagedListDataModel<T> {
         if (listData != null && listData.size() < mListPageInfo.getNumPerPage()) {
             mHasMore = false;
         }
-        ListDataEvent<T> event = new ListDataEvent<T>();
+        ListDataEvent<T> event = new ListDataEvent<>();
         event.hasMore = mHasMore;
         event.newsList = listData;
         event.url = mUrlPart;
@@ -119,17 +148,6 @@ public abstract class PagedListDataModel<T> {
 
     protected void onRequestFail() {
     }
-
-    protected void readCacheData() {
-        Observable<String> observable = Observable.create(new Observable.OnSubscribe<String>() {
-            @Override
-            public void call(Subscriber<? super String> subscriber) {
-
-            }
-        });
-    }
-
-    protected void saveCacheData() {}
 
     /**
      * 由子类实现

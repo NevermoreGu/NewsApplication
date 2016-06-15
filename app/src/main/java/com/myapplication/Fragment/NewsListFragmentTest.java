@@ -18,8 +18,8 @@ import com.myapplication.base.Constants;
 import com.myapplication.bean.NewArticleListDao;
 import com.myapplication.bean.NewsHeadListDataModel;
 import com.myapplication.bean.NewsList;
-import com.myapplication.ui.list.ListPageInfo;
-import com.myapplication.ui.list.PagedListDataModel;
+import com.myapplication.model.list.ListPageInfo;
+import com.myapplication.model.list.PagedListDataModel;
 import com.myapplication.ui.loadmore.LoadMoreContainer;
 import com.myapplication.ui.loadmore.LoadMoreHandler;
 import com.myapplication.ui.loadmore.LoadMoreListViewContainer;
@@ -169,13 +169,13 @@ public class NewsListFragmentTest extends BaseNewHaveHeadListFragment<NewsList, 
         startActivity(intent);
     }
 
-    @Override
-    protected void onListViewScrollStop() {
-        int firstVisiblePosition = absListView.getFirstVisiblePosition();
-        int lastVisiblePosition = absListView.getLastVisiblePosition();
-        NewsList newsList = getListAdapter().getItem(firstVisiblePosition);
-//        ToastUtil.toast(getActivity(), firstVisiblePosition);
-//        adapter.getViewHolderByView(firstVisiblePosition, mListView).;
-    }
+//    @Override
+//    protected void onListViewScrollStop() {
+//        int firstVisiblePosition = absListView.getFirstVisiblePosition();
+//        int lastVisiblePosition = absListView.getLastVisiblePosition();
+//        NewsList newsList = getListAdapter().getItem(firstVisiblePosition);
+////        ToastUtil.toast(getActivity(), firstVisiblePosition);
+////        adapter.getViewHolderByView(firstVisiblePosition, mListView).;
+//    }
 
 }

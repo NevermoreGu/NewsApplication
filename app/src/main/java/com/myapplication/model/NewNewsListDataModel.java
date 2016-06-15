@@ -1,14 +1,15 @@
-package com.myapplication.bean;
+package com.myapplication.model;
 
 import com.myapplication.api.MyApi;
+import com.myapplication.bean.NewsList;
 import com.myapplication.model.list.ListPageInfo;
 import com.myapplication.model.list.PagedListDataModel;
 
 import java.util.ArrayList;
 
-public class NewsListDataModel extends PagedListDataModel<NewsList> {
+public class NewNewsListDataModel extends PagedListDataModel<NewsList> {
 
-    public NewsListDataModel(int numPerPage, String urlPart) {
+    public NewNewsListDataModel(int numPerPage, String urlPart) {
         mListPageInfo = new ListPageInfo<>(numPerPage);
         mUrlPart = urlPart;
     }
@@ -21,14 +22,14 @@ public class NewsListDataModel extends PagedListDataModel<NewsList> {
     @Override
     protected void doQueryData() {
         try {
-            MyApi.newsList(mUrlPart, mListPageInfo.getPage(), listener, errorListener);
+            MyApi.newsList(mUrlPart, mListPageInfo.getPage(), netUICallBack);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    protected ArrayList<NewsList> parseListData(String is){
+    protected ArrayList<NewsList> parseListData(String is) {
         return super.parseListData(is);
     }
 }

@@ -11,7 +11,7 @@ import com.myapplication.R;
 import com.myapplication.bean.Entity;
 import com.myapplication.event.EventCenter;
 import com.myapplication.event.ListAndHeadDataEvent;
-import com.myapplication.ui.list.ListPageInfo;
+import com.myapplication.model.list.ListPageInfo;
 import com.myapplication.ui.refreshmore.CarRefreshHeaderView;
 import com.myapplication.widget.EmptyLayout;
 import com.squareup.leakcanary.RefWatcher;

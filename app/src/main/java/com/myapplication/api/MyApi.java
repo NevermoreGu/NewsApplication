@@ -5,6 +5,9 @@ import com.android.volley.Response;
 import com.myapplication.base.BaseApplication;
 import com.myapplication.base.Constants;
 import com.myapplication.bean.AppConfig;
+import com.myapplication.util.net.NetBuilder;
+import com.myapplication.util.net.NetUICallBack;
+import com.myapplication.util.net.VolleyNet;
 import com.myapplication.util.volleyUtils.StrErrListener;
 import com.myapplication.util.volleyUtils.StringRequestGet;
 import com.myapplication.util.volleyUtils.VolleyUtils;
@@ -59,6 +62,13 @@ public class MyApi {
         // 用法和OkHttp的call如出一辙,
         // 不同的是如果是Android系统回调方法执行在主线程
         call.enqueue(callback);
+    }
+
+    public static void newsList(String urlPart, int pageIndex, NetUICallBack callBack)
+            throws Exception {
+        String url = urlPart + "&page=" + pageIndex + "&pagesize=" + Constants.PAGE_SIZE + "&newdata=1";
+        NetBuilder builder = new NetBuilder.Builder().url(url).callback(callBack).build();
+        VolleyNet.getInstance(BaseApplication.getInstance()).addToRequestQueue(Constants.NEWSLIST, builder);
     }
 
     public static void newsScroll(int pageIndex, Response.Listener<String> listener, Response.ErrorListener errorListener)

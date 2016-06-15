@@ -15,14 +15,9 @@ import android.widget.Toast;
 import com.myapplication.R;
 import com.myapplication.base.BaseActivity;
 import com.myapplication.ui.crop.Crop;
-import com.myapplication.util.net.NetBuilder;
-import com.myapplication.util.net.NetUICallBack;
-import com.myapplication.util.net.VolleyNet;
 import com.myapplication.widget.DeleteEditText;
-import com.myapplication.widget.dialog.WaitDialog;
 
 import java.io.File;
-import java.lang.reflect.Method;
 
 import butterknife.InjectView;
 
@@ -57,30 +52,6 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
 
     @Override
     public void initView() {
-        WaitDialog waitDialog = new WaitDialog(LoginActivity.this);
-        NetBuilder builder = new NetBuilder.Builder().callback(new NetUICallBack(LoginActivity.this, waitDialog) {
-            @Override
-            public void onStart() {
-                super.onStart();
-            }
-
-            @Override
-            public void onResponse(Object response) {
-                super.onResponse(response);
-            }
-
-            @Override
-            public void onErrorResponse(Exception e) {
-                super.onErrorResponse(e);
-            }
-
-            @Override
-            public void onFinish() {
-                super.onFinish();
-            }
-        }).build();
-        VolleyNet.getInstance(LoginActivity.this).addToRequestQueue("", builder);
-
 
         etLoginName.addTextChangedListener(this);
         etLoginPass.addTextChangedListener(this);
@@ -98,61 +69,8 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
 //                resultView.setImageDrawable(null);
 //                Crop.pickImage(LoginActivity.this);
 
-                // 在Android进行通知处理，首先需要重系统哪里获得通知管理器NotificationManager，它是一个系统Service。
-//                NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//                PendingIntent pendingIntent2 = PendingIntent.getActivity(LoginActivity.this, 0,
-//                        new Intent(LoginActivity.this, MainActivity.class), 0);
-//                Notification notify2 = new Notification.Builder(LoginActivity.this)
-//                        .setSmallIcon(R.mipmap.ic_launcher) // 设置状态栏中的小图片，尺寸一般建议在24×24，这个图片同样也是在下拉状态栏中所显示，如果在那里需要更换更大的图片，可以使用setLargeIcon(Bitmap
-//                                // icon)
-//                        .setTicker("TickerText:" + "您有新短消息，请注意查收！")// 设置在status
-//                                // bar上显示的提示文字
-//                        .setContentTitle("Notification Title")// 设置在下拉status
-//                                // bar后Activity，本例子中的NotififyMessage的TextView中显示的标题
-//                        .setContentText("This is the notification message")// TextView中显示的详细内容
-//                        .setContentIntent(pendingIntent2) // 关联PendingIntent
-//                        .setNumber(1) // 在TextView的右方显示的数字，可放大图片看，在最右侧。这个number同时也起到一个序列号的左右，如果多个触发多个通知（同一ID），可以指定显示哪一个。
-//                        .getNotification(); // 需要注意build()是在API level
-//                // 16及之后增加的，在API11中可以使用getNotificatin()来代替
-//                notify2.flags |= Notification.FLAG_AUTO_CANCEL;
-//                manager.notify(1, notify2);
-//
-//                Class<?> notify = notify2.getClass();
-//                String methodName = "getNotificationArrayFromBundle";
-//                try {
-//                    Method method = notify.getDeclaredMethod(methodName, getParamTypes(notify, methodName));
-//                    method.setAccessible(true);
-//                    Notification[] ss = (Notification[]) method.invoke(notify2, getParamTypes(notify, methodName));
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-                Intent intent = new Intent(LoginActivity.this, MyPositionActivity.class);
-                startActivity(intent);
-
             }
         });
-    }
-
-
-    /**
-     * 获取参数类型，返回值保存在Class[]中
-     */
-    public Class[] getParamTypes(Class cls, String mName) {
-        Class[] cs = null;
-
-        /*
-         * Note: 由于我们一般通过反射机制调用的方法，是非public方法
-         * 所以在此处使用了getDeclaredMethods()方法
-         */
-        Method[] mtd = cls.getDeclaredMethods();
-        for (int i = 0; i < mtd.length; i++) {
-            if (!mtd[i].getName().equals(mName)) {    // 不是我们需要的参数，则进入下一次循环
-                continue;
-            }
-
-            cs = mtd[i].getParameterTypes();
-        }
-        return cs;
     }
 
     @Override

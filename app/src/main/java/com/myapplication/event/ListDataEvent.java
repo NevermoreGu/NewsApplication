@@ -1,6 +1,7 @@
 package com.myapplication.event;
 
-import com.myapplication.ui.list.ListPageInfo;
+
+import com.myapplication.model.list.ListPageInfo;
 
 import java.util.List;
 
