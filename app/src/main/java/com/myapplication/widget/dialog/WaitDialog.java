@@ -12,7 +12,9 @@ import android.widget.TextView;
 import com.myapplication.R;
 
 
-public class WaitDialog extends Dialog implements DialogControl{
+public class WaitDialog extends Dialog implements DialogControl {
+
+    private Dialog dialog;
 
     public WaitDialog(Context context) {
         super(context);
@@ -46,8 +48,8 @@ public class WaitDialog extends Dialog implements DialogControl{
         }
     }
 
-    public static WaitDialog createProgressDialog(Context context,
-                                                  CharSequence message) {
+    public WaitDialog createProgressDialog(Context context,
+                                           CharSequence message) {
         WaitDialog waitDialog = new WaitDialog(context,
                 R.style.style_loading_progress);
         waitDialog.setContentView(R.layout.dialog_wait);
@@ -69,32 +71,26 @@ public class WaitDialog extends Dialog implements DialogControl{
         return waitDialog;
     }
 
-    public static void showProgressDialog(WaitDialog waitDialog) {
-        waitDialog.show();
-    }
-
-    public static void cancelProgressDialog(WaitDialog waitDialog) {
-        waitDialog.dismiss();
-    }
-
     @Override
     public void hideProgressDialog() {
-
+        if (dialog != null) {
+            dialog.dismiss();
+        }
     }
 
     @Override
-    public Dialog showProgressDialog() {
+    public Dialog showProgressDialog(Context context) {
+        dialog = createProgressDialog(context, "");
+        return dialog;
+    }
 
+    @Override
+    public Dialog showProgressDialog(Context context, int resId) {
         return null;
     }
 
     @Override
-    public Dialog showProgressDialog(int resId) {
-        return null;
-    }
-
-    @Override
-    public Dialog showProgressDialog(String text) {
+    public Dialog showProgressDialog(Context context, String text) {
         return null;
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ListPageInfo<T> {
 
-    private int mNumPerPage = 0;//每页的总数量
+    private int mNumPerPage = 0;//每页的数量条数
     private int mPage = 1; //默认起始页为1
     private int mLastPage = 1;
     private int mStart = 0;
@@ -13,7 +13,10 @@ public class ListPageInfo<T> {
     private boolean mHasMore;
     private boolean mIsBusy = false;
 
-    private List<T> mDataList; //adapter的数据源
+    /**
+     * adapter的数据源
+     */
+    private List<T> mDataList;
 
     public ListPageInfo(int numPerPage) {
         mNumPerPage = numPerPage;
@@ -24,7 +27,7 @@ public class ListPageInfo<T> {
             return;
         }
         if (mPage == 1 || mDataList == null) {
-            mDataList = new ArrayList<T>();
+            mDataList = new ArrayList<>();
         }
         mDataList.addAll(dataList);
     }
@@ -73,11 +76,6 @@ public class ListPageInfo<T> {
         return mNumPerPage;
     }
 
-    /**
-     * start from 0
-     *
-     * @return
-     */
 //    public int getPage() {
 //        return mStart / mNumPerPage;
 //    }
@@ -104,11 +102,6 @@ public class ListPageInfo<T> {
         return mDataList == null || mDataList.size() == 0;
     }
 
-    /**
-     * try to move to next page
-     *
-     * @return
-     */
     public boolean prepareForNextPage() {
         if (hasMore()) {
 //            mLastStart = mStart;
@@ -131,11 +124,6 @@ public class ListPageInfo<T> {
         return mDataList.size();
     }
 
-    /**
-     * the first item in list
-     *
-     * @return
-     */
     public T firstItem() {
         if (mDataList == null || mDataList.size() == 0) {
             return null;
@@ -143,11 +131,6 @@ public class ListPageInfo<T> {
         return mDataList.get(0);
     }
 
-    /**
-     * the last item in list
-     *
-     * @return
-     */
     public T lastItem() {
         if (mDataList == null || mDataList.size() == 0) {
             return null;

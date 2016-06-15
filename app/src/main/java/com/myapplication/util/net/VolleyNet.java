@@ -5,14 +5,18 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.v4.util.LruCache;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.myapplication.bean.Entity;
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 
@@ -83,27 +87,49 @@ public class VolleyNet<T extends Entity> {
 
         netCallBack.onStart();
 
-        Response.Listener<String> listener = new Response.Listener<String>() {
+        Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(JSONObject response) {
                 T result = null;
-                if (clazz != null) {
-                    result = mJson.fromJson(response, clazz);
-                } else if (type != null) {
-                    result = mJson.fromJson(response, type);
+                try {
+                    if (clazz != null) {
+                        result = mJson.fromJson(response.toString(), clazz);
+                    } else if (type != null) {
+                        result = mJson.fromJson(response.toString(), type);
+                    }
+                } catch (JsonSyntaxException e) {
+                    e.printStackTrace();
                 }
                 netCallBack.onResponse(result);
-                netCallBack.onFinish();
+
             }
         };
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 netCallBack.onErrorResponse(error);
-                netCallBack.onFinish();
+
             }
         };
-        StringRequest request = new StringRequest(url, listener, errorListener);
+
+        JsonObjectRequest request;
+        if (param != null) {
+            request = new JsonObjectRequest(Request.Method.POST, url, param, listener, errorListener){
+                @Override
+                protected void onFinish() {
+                    super.onFinish();
+                    netCallBack.onFinish();
+                }
+            };
+        } else {
+            request = new JsonObjectRequest(url, listener, errorListener){
+                @Override
+                protected void onFinish() {
+                    super.onFinish();
+                    netCallBack.onFinish();
+                }
+            };
+        }
         request.setTag(tag);
         getRequestQueue().add(request);
     }

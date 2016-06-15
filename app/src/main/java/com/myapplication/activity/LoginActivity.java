@@ -80,6 +80,8 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
             }
         }).build();
         VolleyNet.getInstance(LoginActivity.this).addToRequestQueue("", builder);
+
+
         etLoginName.addTextChangedListener(this);
         etLoginPass.addTextChangedListener(this);
         tvLoginForgetPass.setOnClickListener(this);

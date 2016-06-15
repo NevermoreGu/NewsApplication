@@ -19,6 +19,9 @@ public abstract class PagedListDataModel<T> {
     protected List<T> listData; //解析的数据
     protected String mUrlPart; //交由子类实现
 
+    /**
+     * 数据加载完成的回调
+     */
     private PagedListDataHandler mPagedListDataHandler;
 
     public interface PagedListDataHandler {
@@ -27,6 +30,41 @@ public abstract class PagedListDataModel<T> {
 
     public void setPageListDataHandler(PagedListDataHandler handler) {
         mPagedListDataHandler = handler;
+    }
+
+    /**
+     * 必须实现的方法，联网请求数据
+     */
+    protected abstract void doQueryData();
+
+    public void queryFirstPage() {
+        checkPageInfo();
+        mListPageInfo.goToHead();
+        doQueryDataInner();
+    }
+
+    public void queryNextPage() {
+        checkPageInfo();
+        if (mListPageInfo.prepareForNextPage()) {
+            doQueryDataInner();
+        }
+    }
+
+    private void checkPageInfo() {
+        if (mListPageInfo == null) {
+            throw new IllegalArgumentException(" mListPageInfo has not been initialized.");
+        }
+    }
+
+    private void doQueryDataInner() {
+        if (!mListPageInfo.tryEnterLock()) {
+            return;
+        }
+        if (isReadCacheData()) {
+
+        } else {
+            doQueryData();
+        }
     }
 
     protected abstract String getCacheKeyPrefix();
@@ -47,8 +85,6 @@ public abstract class PagedListDataModel<T> {
         }
         return false;  //联网请求数据
     }
-
-    protected abstract void doQueryData();//联网请求数据
 
     protected Response.Listener<String> listener = new Response.Listener<String>() {
         @Override
@@ -93,9 +129,7 @@ public abstract class PagedListDataModel<T> {
         });
     }
 
-    protected void saveCacheData() {
-
-    }
+    protected void saveCacheData() {}
 
     /**
      * 由子类实现
@@ -107,39 +141,8 @@ public abstract class PagedListDataModel<T> {
         return null;
     }
 
-    public void queryFirstPage() {
-        checkPageInfo();
-        mListPageInfo.goToHead();
-        doQueryDataInner();
-    }
-
-    public void queryNextPage() {
-        checkPageInfo();
-        if (mListPageInfo.prepareForNextPage()) {
-            doQueryDataInner();
-        }
-    }
-
-    private void checkPageInfo() {
-        if (mListPageInfo == null) {
-            throw new IllegalArgumentException(" mListPageInfo has not been initialized.");
-        }
-    }
-
-    private void doQueryDataInner() {
-        if (!mListPageInfo.tryEnterLock()) {
-            return;
-        }
-        if (isReadCacheData()) {
-
-
-        } else {
-            doQueryData();
-        }
-    }
-
     protected void setRequestResult(List<T> list) {
-        mListPageInfo.updateListInfo(list);
+        mListPageInfo.updateListInfo(list); //只是改变数据，需要调用adapter change更新
         if (null != mPagedListDataHandler) {
             mPagedListDataHandler.onPageDataLoaded(mListPageInfo);
         }

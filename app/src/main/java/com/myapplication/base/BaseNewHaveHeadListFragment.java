@@ -13,7 +13,6 @@ import com.myapplication.event.EventCenter;
 import com.myapplication.event.ListAndHeadDataEvent;
 import com.myapplication.ui.list.ListPageInfo;
 import com.myapplication.ui.refreshmore.CarRefreshHeaderView;
-import com.myapplication.util.TDevice;
 import com.myapplication.widget.EmptyLayout;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -94,7 +93,7 @@ public abstract class BaseNewHaveHeadListFragment<T1 extends Entity, T2 extends 
             @Override
             public void onClick(View v) {
                 mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
-                requestListData();
+                sendListRequestData();
             }
         });
 
@@ -120,7 +119,7 @@ public abstract class BaseNewHaveHeadListFragment<T1 extends Entity, T2 extends 
 
                     @Override
                     public void onRefreshBegin(final PtrFrameLayout frame) {
-                        requestListData();
+                        sendListRequestData();
                     }
                 });
 
@@ -128,25 +127,8 @@ public abstract class BaseNewHaveHeadListFragment<T1 extends Entity, T2 extends 
                 mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
             }
         }
-        /**
-         * 自动加载
-         */
-//        mPtrFrameLayout.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mPtrFrameLayout.autoRefresh(false);
-//            }
-//        }, 100);
 
-        //加载更多
-//        if (absListView instanceof ListView) {
-//
-//
-//        } else if (absListView instanceof GridViewWithHeaderAndFooter) {
-//
-//        }
-
-        requestListData();
+        sendListRequestData();
         EventCenter.getInstance().register(this);
     }
 
@@ -205,28 +187,6 @@ public abstract class BaseNewHaveHeadListFragment<T1 extends Entity, T2 extends 
         return true;
     }
 
-    protected void requestListData() {
-
-        String key = getCacheKey();
-        if (isReadCacheData()) {
-//            readCacheData(key);
-        } else {
-            // 取新的数据
-            sendListRequestData();
-        }
-    }
-
-    /**
-     * 判断是否需要读取缓存的数据
-     *
-     * @return
-     */
-    protected boolean isReadCacheData() {
-        if (!TDevice.hasInternet()) {
-            return true;
-        }
-        return false;
-    }
 
     // 是否需要自动刷新
     protected boolean needAutoRefresh() {
@@ -283,13 +243,6 @@ public abstract class BaseNewHaveHeadListFragment<T1 extends Entity, T2 extends 
             }
         }
         return false;
-    }
-
-    protected int getPageSize() {
-        return Constants.PAGE_SIZE;
-    }
-
-    protected void onListViewScrollStop() {
     }
 
     @Override

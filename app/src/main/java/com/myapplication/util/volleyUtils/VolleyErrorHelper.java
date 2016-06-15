@@ -1,7 +1,6 @@
 package com.myapplication.util.volleyUtils;
 
-import java.util.HashMap;
-import java.util.Map;
+import android.content.Context;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -12,9 +11,10 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.router.carquery.R;
+import com.myapplication.R;
 
-import android.content.Context;
+import java.util.HashMap;
+import java.util.Map;
 
 public class VolleyErrorHelper {
 
