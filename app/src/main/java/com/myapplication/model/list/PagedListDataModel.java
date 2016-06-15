@@ -2,6 +2,7 @@ package com.myapplication.model.list;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.myapplication.bean.Entity;
 import com.myapplication.event.EventCenter;
 import com.myapplication.event.ListDataEvent;
 import com.myapplication.util.TDevice;
@@ -14,7 +15,7 @@ import java.util.List;
 import rx.Observable;
 import rx.Subscriber;
 
-public abstract class PagedListDataModel<T> {
+public abstract class PagedListDataModel<T extends Entity> {
 
     protected ListPageInfo<T> mListPageInfo;//由子类实现
     protected List<T> listData; //解析的数据
@@ -112,9 +113,9 @@ public abstract class PagedListDataModel<T> {
         }
     };
 
-    protected NetUICallBack netUICallBack = new NetUICallBack() {
+    protected NetUICallBack<T> netUICallBack = new NetUICallBack<T>() {
         @Override
-        public void onResponse(Object response) {
+        public void onResponse(T response) {
             super.onResponse(response);
         }
 

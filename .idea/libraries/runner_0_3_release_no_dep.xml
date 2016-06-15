@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="runner-0.3-release-no-dep">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/runner-0.3-release-no-dep.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

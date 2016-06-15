@@ -8,16 +8,12 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.myapplication.R;
 import com.myapplication.interf.BaseViewInterface;
-import com.myapplication.interf.DialogControl;
-import com.myapplication.ui.DialogHelp;
 import com.myapplication.util.TDevice;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseFragmentActivity extends FragmentActivity implements
-        DialogControl, View.OnClickListener, BaseViewInterface, View.OnTouchListener {
+public abstract class BaseFragmentActivity extends FragmentActivity implements View.OnClickListener, BaseViewInterface, View.OnTouchListener {
 
     private boolean _isVisible;
     private ProgressDialog _waitDialog;
@@ -108,42 +104,42 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements
         startActivityForResult(intent, requestCode);
     }
 
-    @Override
-    public ProgressDialog showWaitDialog() {
-        return showWaitDialog(R.string.loading);
-    }
-
-    @Override
-    public ProgressDialog showWaitDialog(int resid) {
-        return showWaitDialog(getString(resid));
-    }
-
-    @Override
-    public ProgressDialog showWaitDialog(String message) {
-        if (_isVisible) {
-            if (_waitDialog == null) {
-                _waitDialog = DialogHelp.getWaitDialog(this, message);
-            }
-            if (_waitDialog != null) {
-                _waitDialog.setMessage(message);
-                _waitDialog.show();
-            }
-            return _waitDialog;
-        }
-        return null;
-    }
-
-    @Override
-    public void hideWaitDialog() {
-        if (_isVisible && _waitDialog != null) {
-            try {
-                _waitDialog.dismiss();
-                _waitDialog = null;
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
+//    @Override
+//    public ProgressDialog showWaitDialog() {
+//        return showWaitDialog(R.string.loading);
+//    }
+//
+//    @Override
+//    public ProgressDialog showWaitDialog(int resid) {
+//        return showWaitDialog(getString(resid));
+//    }
+//
+//    @Override
+//    public ProgressDialog showWaitDialog(String message) {
+//        if (_isVisible) {
+//            if (_waitDialog == null) {
+//                _waitDialog = DialogHelp.getWaitDialog(this, message);
+//            }
+//            if (_waitDialog != null) {
+//                _waitDialog.setMessage(message);
+//                _waitDialog.show();
+//            }
+//            return _waitDialog;
+//        }
+//        return null;
+//    }
+//
+//    @Override
+//    public void hideWaitDialog() {
+//        if (_isVisible && _waitDialog != null) {
+//            try {
+//                _waitDialog.dismiss();
+//                _waitDialog = null;
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//    }
 
     @Override
     protected void onResume() {

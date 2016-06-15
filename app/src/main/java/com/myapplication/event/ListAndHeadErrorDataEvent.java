@@ -1,8 +1,7 @@
 package com.myapplication.event;
 
-import com.myapplication.ui.list.ListPageInfo;
 
-import java.util.List;
+import com.myapplication.model.list.ListPageInfo;
 
 public class ListAndHeadErrorDataEvent<T1,T2> {
 

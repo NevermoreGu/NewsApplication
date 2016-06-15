@@ -2,7 +2,7 @@ package com.myapplication.model.list;
 
 import java.util.List;
 
-public abstract class PagedListAndHeadDataModel<T1,T2> extends PagedListDataModel<T1> {
+public abstract class PagedListAndHeadDataModel<T1,T2> extends PagedListDataModel {
 
     protected T2 headData;
     protected List<T1> headListData;

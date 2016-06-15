@@ -85,12 +85,7 @@ dependencies {
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile files('libs/gson-2.2.4.jar')
-    compile files('libs/xstream-1.4.7.jar')
-    compile files('libs/KJFrameForAndroid_v2.223.jar')
-    compile files('libs/junit-4.12.jar')
-    compile files('libs/rules-0.3-release-no-dep.jar')
-    compile files('libs/espresso-core-2.2-release-no-dep.jar')
+
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
     // or 1.4-beta1
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
@@ -98,10 +93,9 @@ dependencies {
     //    compile('in.srain.cube:cube-sdk:1.0.44.33-SNAPSHOT@aar') {
     //        exclude group: 'in.srain.cube', module: 'clog'
     //    }
-    compile files('libs/runner-0.3-release-no-dep.jar')
-    compile files('libs/espresso-contrib-2.2-release-no-dep.jar')
+
     androidTestCompile 'com.android.support:support-annotations:22.2.1'
     //    androidTestCompile 'com.android.support.test:runner:0.5'
     //    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    compile files('libs/AMap3DMap_3.3.1_AMapNavi_1.8.0_AMapSearch_3.2.1_AMapLocation_2.4.1_20160425.jar')
+
 }
