@@ -62,7 +62,6 @@ public class SelectPicturesActivity extends BaseFragmentActivity {
     @InjectView(R.id.gv_select_pictures)
     GridView mGridView;
 
-
     private SelectPicturesInfo mSelectPicturesInfo = new SelectPicturesInfo();
     private ArrayList<String> resultList = new ArrayList<>();// 结果数据
     private ArrayList<FolderInfo> mResultFolder = new ArrayList<>();// 文件夹数据
