@@ -15,24 +15,24 @@ import java.util.List;
 import rx.Observable;
 import rx.Subscriber;
 
-public abstract class PagedListDataModel<T extends Entity> {
+public abstract class PageListDataModel<T extends Entity> {
 
     protected ListPageInfo<T> mListPageInfo;//由子类实现
     protected List<T> listData; //解析的数据
     protected String mUrlPart; //交由子类实现
 
-    /**
-     * 数据加载完成的回调
-     */
-    private PagedListDataHandler mPagedListDataHandler;
-
-    public interface PagedListDataHandler {
-        void onPageDataLoaded(ListPageInfo<?> listPageInfo);
-    }
-
-    public void setPageListDataHandler(PagedListDataHandler handler) {
-        mPagedListDataHandler = handler;
-    }
+//    /**
+//     * 数据加载完成的回调
+//     */
+//    private PagedListDataHandler mPagedListDataHandler;
+//
+//    public interface PagedListDataHandler {
+//        void onPageDataLoaded(ListPageInfo<?> listPageInfo);
+//    }
+//
+//    public void setPageListDataHandler(PagedListDataHandler handler) {
+//        mPagedListDataHandler = handler;
+//    }
 
     /**
      * 必须实现的方法，联网请求数据
@@ -85,7 +85,8 @@ public abstract class PagedListDataModel<T extends Entity> {
         });
     }
 
-    protected void saveCacheData() {}
+    protected void saveCacheData() {
+    }
 
     /**
      * 判断是否需要读取缓存的数据
@@ -102,20 +103,20 @@ public abstract class PagedListDataModel<T extends Entity> {
     protected Response.Listener<String> listener = new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
-            onRequestFinish(response);
+            onRequestResponse(response);
         }
     };
 
     protected Response.ErrorListener errorListener = new StrErrListener() {
         @Override
         public void onErrorResponse(VolleyError arg0) {
-            onRequestFail();
+            onRequestError();
         }
     };
 
-    protected NetUICallBack<T> netUICallBack = new NetUICallBack<T>() {
+    protected NetUICallBack netUICallBack = new NetUICallBack() {
         @Override
-        public void onResponse(T response) {
+        public void onResponse(String response) {
             super.onResponse(response);
         }
 
@@ -130,7 +131,7 @@ public abstract class PagedListDataModel<T extends Entity> {
         }
     };
 
-    protected void onRequestFinish(String response) {
+    protected void onRequestResponse(String response) {
 
         listData = parseListData(response);
 
@@ -147,7 +148,8 @@ public abstract class PagedListDataModel<T extends Entity> {
         EventCenter.getInstance().post(event);
     }
 
-    protected void onRequestFail() {
+    protected void onRequestError() {
+        setRequestFail();
     }
 
     /**
@@ -162,23 +164,14 @@ public abstract class PagedListDataModel<T extends Entity> {
 
     protected void setRequestResult(List<T> list) {
         mListPageInfo.updateListInfo(list); //只是改变数据，需要调用adapter change更新
-        if (null != mPagedListDataHandler) {
-            mPagedListDataHandler.onPageDataLoaded(mListPageInfo);
-        }
     }
 
     protected void setRequestResult(List<T> list, int total) {
         mListPageInfo.updateListInfo(list, total);
-        if (null != mPagedListDataHandler) {
-            mPagedListDataHandler.onPageDataLoaded(mListPageInfo);
-        }
     }
 
     protected void setRequestResult(List<T> list, boolean hasMore) {
         mListPageInfo.updateListInfo(list, hasMore);
-        if (null != mPagedListDataHandler) {
-            mPagedListDataHandler.onPageDataLoaded(mListPageInfo);
-        }
     }
 
     protected void setRequestFail() {

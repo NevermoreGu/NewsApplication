@@ -8,13 +8,13 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-public abstract class NetUICallBack<T> extends NetCallBack<T> {
+public abstract class NetUICallBack extends NetCallBack {
 
     @Override
     public void onStart() {}
 
     @Override
-    public void onResponse(T response) {}
+    public void onResponse(String response) {}
 
     @Override
     public void onErrorResponse(Exception e) {

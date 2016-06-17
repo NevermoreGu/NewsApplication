@@ -1,16 +1,18 @@
-package com.myapplication.bean;
+package com.myapplication.model;
 
 import com.myapplication.api.MyApi;
+import com.myapplication.bean.NewArticleListDao;
+import com.myapplication.bean.NewsList;
 import com.myapplication.event.EventCenter;
 import com.myapplication.event.ListAndHeadDataEvent;
 import com.myapplication.model.list.ListPageInfo;
-import com.myapplication.model.list.PagedListAndHeadDataModel;
+import com.myapplication.model.list.PageMoreListDataModel;
 import com.myapplication.util.GsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsHeadListDataModel extends PagedListAndHeadDataModel<NewsList, NewArticleListDao> {
+public class NewsHeadListDataModel extends PageMoreListDataModel<NewsList, NewArticleListDao> {
 
     private List<NewsList> newsLists;
     private int pageSize = 0;
@@ -26,7 +28,7 @@ public class NewsHeadListDataModel extends PagedListAndHeadDataModel<NewsList, N
     }
 
     @Override
-    protected void onRequestFinish(String response) {
+    protected void onRequestResponse(String response) {
         headData = parseData(response);
         headListData = parseList();
 
@@ -46,7 +48,7 @@ public class NewsHeadListDataModel extends PagedListAndHeadDataModel<NewsList, N
     }
 
     @Override
-    protected void onRequestFail() {
+    protected void onRequestError() {
         setRequestFail();
         ListAndHeadDataEvent<NewsList, NewArticleListDao> event = new ListAndHeadDataEvent();
         event.listPageInfo = mListPageInfo;

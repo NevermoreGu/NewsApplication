@@ -16,10 +16,8 @@ import com.myapplication.base.BaseListAdapter;
 import com.myapplication.base.BaseNewHaveHeadListFragment;
 import com.myapplication.base.Constants;
 import com.myapplication.bean.NewArticleListDao;
-import com.myapplication.bean.NewsHeadListDataModel;
 import com.myapplication.bean.NewsList;
-import com.myapplication.model.list.ListPageInfo;
-import com.myapplication.model.list.PagedListDataModel;
+import com.myapplication.model.NewsHeadListDataModel;
 import com.myapplication.ui.loadmore.LoadMoreContainer;
 import com.myapplication.ui.loadmore.LoadMoreHandler;
 import com.myapplication.ui.loadmore.LoadMoreListViewContainer;
@@ -100,12 +98,6 @@ public class NewsListFragmentTest extends BaseNewHaveHeadListFragment<NewsList, 
         }
         url = urlPart + "?key=" + id;
         model = new NewsHeadListDataModel(Constants.PAGE_SIZE, url);
-        model.setPageListDataHandler(new PagedListDataModel.PagedListDataHandler() {
-            @Override
-            public void onPageDataLoaded(ListPageInfo<?> listPageInfo) {
-
-            }
-        });
     }
 
     @Override

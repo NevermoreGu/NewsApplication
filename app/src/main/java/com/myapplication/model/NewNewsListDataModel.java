@@ -3,11 +3,11 @@ package com.myapplication.model;
 import com.myapplication.api.MyApi;
 import com.myapplication.bean.NewsList;
 import com.myapplication.model.list.ListPageInfo;
-import com.myapplication.model.list.PagedListDataModel;
+import com.myapplication.model.list.PageListDataModel;
 
 import java.util.ArrayList;
 
-public class NewNewsListDataModel extends PagedListDataModel<NewsList> {
+public class NewNewsListDataModel extends PageListDataModel<NewsList> {
 
     public NewNewsListDataModel(int numPerPage, String urlPart) {
         mListPageInfo = new ListPageInfo<>(numPerPage);

@@ -12,25 +12,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-import com.myapplication.bean.Entity;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
-
-public class VolleyNet<T extends Entity> {
+public class VolleyNet {
 
     private static VolleyNet mInstance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     private Context mCtx;
-    private Gson mJson;
 
     private VolleyNet(Context context) {
         mCtx = context.getApplicationContext();
-        mJson = new Gson();
         mRequestQueue = getRequestQueue();
         final int maxMemory = ((int) Runtime.getRuntime().maxMemory()) / 1024 / 1024;
         mImageLoader = new ImageLoader(mRequestQueue,
@@ -78,37 +71,23 @@ public class VolleyNet<T extends Entity> {
         return mRequestQueue;
     }
 
-    public void addToRequestQueue(String tag, final NetBuilder<T> netBuilder) {
-        final NetCallBack<T> netCallBack = netBuilder.callBack;
+    public void addToRequestQueue(String tag, final NetBuilder netBuilder) {
+        final NetCallBack netCallBack = netBuilder.callBack;
         String url = netBuilder.url;
         String param = netBuilder.param;
-        final Class<T> clazz = netBuilder.clazz;
-        final Type type = netBuilder.type;
 
         netCallBack.onStart();
 
         Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                T result = null;
-                try {
-                    if (clazz != null) {
-                        result = mJson.fromJson(response.toString(), clazz);
-                    } else if (type != null) {
-                        result = mJson.fromJson(response.toString(), type);
-                    }
-                } catch (JsonSyntaxException e) {
-                    e.printStackTrace();
-                }
-                netCallBack.onResponse(result);
-
+                netCallBack.onResponse(response.toString());
             }
         };
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 netCallBack.onErrorResponse(error);
-
             }
         };
 
@@ -134,7 +113,7 @@ public class VolleyNet<T extends Entity> {
         getRequestQueue().add(request);
     }
 
-    public void cancelPendingRequests(Object tag) {
+    public void cancelAllRequests(Object tag) {
         getRequestQueue().cancelAll(tag);
     }
 

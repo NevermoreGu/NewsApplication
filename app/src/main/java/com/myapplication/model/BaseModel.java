@@ -12,6 +12,12 @@ public abstract class BaseModel<T extends Entity> {
      */
     protected abstract void doQueryData();
 
+    public DataHandler<T> dataHandler;
+
+    public void setOnDataHandler(DataHandler<T> dataHandler){
+        this.dataHandler = dataHandler;
+    }
+
     public void queryFirstPage() {
         doQueryDataInner();
     }
