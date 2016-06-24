@@ -13,6 +13,9 @@ import com.myapplication.util.volleyUtils.StringRequestGet;
 import com.myapplication.util.volleyUtils.VolleyUtils;
 import com.myapplication.util.volleyUtils.XmlRequestGet;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,4 +91,21 @@ public class MyApi {
                 Constants.VIDEOSLIST);
     }
 
+    public static String firstPageData4laso(String vspId, String authId, String operUserId) {
+        JSONObject root = new JSONObject();
+        JSONObject params = new JSONObject();
+        try {
+            root.put("cmd", "rightUpperData4laso");
+            root.put("params", params);
+
+            params.put("vspId", vspId);
+            params.put("authId", authId);
+            params.put("operUserId", operUserId);
+            return root.toString();
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
