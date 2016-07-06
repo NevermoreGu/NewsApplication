@@ -35,7 +35,6 @@ public class DialogHelp {
         showDialog(mContext, title, message, "确定", "取消");
     }
 
-
     /**
      * 获取一个dialog
      *

@@ -6,9 +6,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import com.myapplication.adapter.base.BaseQuickAdapter;
 
 
-/**
- * Created by luoxw on 2016/6/20.
- */
 public class ItemDraggableCallback extends ItemTouchHelper.Callback {
 
     private static final String TAG = "ItemDraggableCallback";

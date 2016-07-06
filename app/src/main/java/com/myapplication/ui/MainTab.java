@@ -4,7 +4,6 @@ package com.myapplication.ui;
 import com.myapplication.Fragment.ExploreFragment;
 import com.myapplication.Fragment.MyInformationFragment;
 import com.myapplication.Fragment.NewsFragment;
-import com.myapplication.Fragment.NewsListFragment;
 import com.myapplication.Fragment.VideoFragment;
 import com.myapplication.R;
 
@@ -27,7 +26,7 @@ public enum MainTab {
     private int resIcon;
     private Class<?> clz;
 
-    private MainTab(int idx, int resName, int resIcon, Class<?> clz) {
+    MainTab(int idx, int resName, int resIcon, Class<?> clz) {
         this.idx = idx;
         this.resName = resName;
         this.resIcon = resIcon;

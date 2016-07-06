@@ -78,10 +78,6 @@ public abstract class BaseHaveHeadListFragment<T1 extends Entity, T2 extends Ent
 
     protected void initRootView(){}
 
-    protected <T extends View> T findHeaderView(View headerView, int viewId) {
-        return (T) headerView.findViewById(viewId);
-    }
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

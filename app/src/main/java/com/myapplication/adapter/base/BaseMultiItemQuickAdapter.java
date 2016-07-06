@@ -5,33 +5,18 @@ import android.view.ViewGroup;
 
 import com.myapplication.adapter.base.entity.MultiItemEntity;
 
-import java.util.List;
-
-/**
- * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
- */
 public abstract class BaseMultiItemQuickAdapter<T extends MultiItemEntity> extends BaseQuickAdapter {
 
-    /**
-     * layouts indexed with their types
-     */
     private SparseArray<Integer> layouts;
 
-    /**
-     * Same as QuickAdapter#QuickAdapter(Context,int) but with
-     * some initialization data.
-     *
-     * @param data    A new list is created out of this one to avoid mutable list
-     */
-    public BaseMultiItemQuickAdapter( List<T> data) {
-        super( data);
+    public BaseMultiItemQuickAdapter(int layoutResId) {
+        super(layoutResId);
     }
 
     @Override
     protected int getDefItemViewType(int position) {
-        return ((MultiItemEntity) mData.get(position)).getItemType();
+        return ((MultiItemEntity) getData().get(position)).getItemType();
     }
-
 
     @Override
     protected BaseViewHolder onCreateDefViewHolder(ViewGroup parent, int viewType) {
@@ -48,7 +33,6 @@ public abstract class BaseMultiItemQuickAdapter<T extends MultiItemEntity> exten
         }
         layouts.put(type, layoutResId);
     }
-
 
     @Override
     protected void convert(BaseViewHolder helper, Object item) {

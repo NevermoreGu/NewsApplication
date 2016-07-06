@@ -9,4 +9,5 @@ public class Base implements Serializable {
     public String resultNote;
     public int pages;
     public int pageNo;
+
 }

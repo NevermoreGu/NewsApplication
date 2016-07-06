@@ -82,6 +82,23 @@ public class MyApi {
                 Constants.NEWSSCROLL);
     }
 
+    //苏轼   水调歌头
+    //明月几时有，把酒问青天，不知天上宫阙，今夕是何年。我欲乘风归去，又恐琼楼玉宇，高处不胜寒，起舞弄清影，何似在人间。
+    // 转朱阁，低绮户，照无眠，不应有恨，何事长向别时圆，人有悲欢离合，月有阴晴圆缺，此事古难全，但愿人长久，千里共婵娟，
+
+    //苏轼 江城子
+    //十年生死两茫茫，不思量，自难忘。千里孤坟，无处话凄凉，纵使相逢应不识，尘满面，鬓如霜。
+    //夜来幽梦忽还乡，小轩窗，正梳妆。相顾无言，惟有泪千行。料得年年肠断处，明月夜，短松冈。
+
+    /**
+     * videos list
+     * @param urlPart
+     * @param id
+     * @param pageIndex
+     * @param listener
+     * @param errorListener
+     * @throws Exception
+     */
     public static void videosList(String urlPart, String id, int pageIndex, Response.Listener<String> listener, Response.ErrorListener errorListener)
             throws Exception {
 //        String url = urlPart + "?key=" + id + "&page=" + pageIndex + "&pagesize=" + Constants.PAGE_SIZE + "&newdata=1";

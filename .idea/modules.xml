@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo-master/demo-master.iml" filepath="$PROJECT_DIR$/demo-master/demo-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sinavideo_playercore-master/sinavideo_playercore-master.iml" filepath="$PROJECT_DIR$/sinavideo_playercore-master/sinavideo_playercore-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sinavideo_playersdk-master/sinavideo_playersdk-master.iml" filepath="$PROJECT_DIR$/sinavideo_playersdk-master/sinavideo_playersdk-master.iml" />
     </modules>
   </component>
 </project>

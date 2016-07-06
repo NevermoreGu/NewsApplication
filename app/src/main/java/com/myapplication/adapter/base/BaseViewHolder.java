@@ -19,17 +19,12 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-
-/**
- * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
- */
 public class BaseViewHolder extends RecyclerView.ViewHolder {
 
     /**
      * Views indexed with their IDs
      */
     private final SparseArray<View> views;
-
 
     public View convertView;
 
@@ -41,7 +36,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
 
     protected BaseViewHolder(View view) {
         super(view);
-        this.views = new SparseArray<View>();
+        this.views = new SparseArray<>();
         convertView = view;
 
     }

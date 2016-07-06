@@ -449,13 +449,18 @@ public class TDevice {
         return null;
     }
 
-    public static int getVersionCode() {
-        int versionCode = 0;
+    /**
+     * 版本号
+     *
+     * @param mContext
+     * @return
+     */
+    public static int getVersionCode(Context mContext) {
+        int versionCode;
         try {
-            versionCode = BaseApplication
-                    .getInstance()
+            versionCode = mContext
                     .getPackageManager()
-                    .getPackageInfo(BaseApplication.getInstance().getPackageName(),
+                    .getPackageInfo(mContext.getPackageName(),
                             0).versionCode;
         } catch (NameNotFoundException ex) {
             versionCode = 0;
@@ -463,10 +468,10 @@ public class TDevice {
         return versionCode;
     }
 
-    public static int getVersionCode(String packageName) {
-        int versionCode = 0;
+    public static int getVersionCode(Context mContext, String packageName) {
+        int versionCode;
         try {
-            versionCode = BaseApplication.getInstance().getPackageManager()
+            versionCode = mContext.getPackageManager()
                     .getPackageInfo(packageName, 0).versionCode;
         } catch (NameNotFoundException ex) {
             versionCode = 0;
@@ -474,13 +479,18 @@ public class TDevice {
         return versionCode;
     }
 
-    public static String getVersionName() {
-        String name = "";
+    /**
+     * 版本名称
+     *
+     * @param mContext
+     * @return
+     */
+    public static String getVersionName(Context mContext) {
+        String name;
         try {
-            name = BaseApplication
-                    .getInstance()
+            name = mContext
                     .getPackageManager()
-                    .getPackageInfo(BaseApplication.getInstance().getPackageName(),
+                    .getPackageInfo(mContext.getPackageName(),
                             0).versionName;
         } catch (NameNotFoundException ex) {
             name = "";
@@ -494,6 +504,11 @@ public class TDevice {
         return pm.isScreenOn();
     }
 
+    /**
+     * 安装APK
+     * @param context
+     * @param file
+     */
     public static void installAPK(Context context, File file) {
         if (file == null || !file.exists())
             return;
@@ -514,12 +529,33 @@ public class TDevice {
         return intent;
     }
 
+    /**
+     * 拨打电话
+     * @param context
+     * @param number
+     */
     public static void openDial(Context context, String number) {
         Uri uri = Uri.parse("tel:" + number);
         Intent it = new Intent(Intent.ACTION_DIAL, uri);
         context.startActivity(it);
     }
 
+    /**
+     * 跳到拨号界面
+     * @param context
+     */
+    public static void openDail(Context context) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 发送短信
+     * @param context
+     * @param smsBody
+     * @param tel
+     */
     public static void openSMS(Context context, String smsBody, String tel) {
         Uri uri = Uri.parse("smsto:" + tel);
         Intent it = new Intent(Intent.ACTION_SENDTO, uri);
@@ -527,12 +563,10 @@ public class TDevice {
         context.startActivity(it);
     }
 
-    public static void openDail(Context context) {
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-    }
-
+    /**
+     * 跳到短信界面
+     * @param context
+     */
     public static void openSendMsg(Context context) {
         Uri uri = Uri.parse("smsto:");
         Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
@@ -540,8 +574,12 @@ public class TDevice {
         context.startActivity(intent);
     }
 
+    /**
+     * 调用照相机
+     * @param context
+     */
     public static void openCamera(Context context) {
-        Intent intent = new Intent(); // 调用照相机
+        Intent intent = new Intent();
         intent.setAction("android.media.action.STILL_IMAGE_CAMERA");
         intent.setFlags(0x34c40000);
         context.startActivity(intent);
