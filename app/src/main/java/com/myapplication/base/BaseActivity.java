@@ -13,7 +13,7 @@ import com.myapplication.util.TDevice;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener, BaseViewInterface, View.OnTouchListener {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener, BaseViewInterface{
 
     private boolean _isVisible;
     private ProgressDialog _waitDialog;

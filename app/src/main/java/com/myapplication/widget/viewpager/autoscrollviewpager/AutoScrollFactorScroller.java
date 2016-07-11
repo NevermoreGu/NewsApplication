@@ -1,4 +1,4 @@
-package com.myapplication.widget.autoscrollviewpager;
+package com.myapplication.widget.viewpager.autoscrollviewpager;
 
 import android.content.Context;
 import android.view.animation.Interpolator;

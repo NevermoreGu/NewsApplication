@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.myapplication.widget.autoscrollviewpager.AutoScrollViewPager
+    <com.myapplication.widget.viewpager.autoscrollviewpager.AutoScrollViewPager
         android:id="@+id/vp_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.myapplication.widget.autoscrollviewpager.AutoScrollViewPager>
+    </com.myapplication.widget.viewpager.autoscrollviewpager.AutoScrollViewPager>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.myapplication.widget.autoscrollviewpager.CirclePageIndicator
+        <com.myapplication.widget.viewpager.autoscrollviewpager.CirclePageIndicator
             android:id="@+id/pi_news_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

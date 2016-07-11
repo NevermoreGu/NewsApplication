@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 import com.myapplication.R;
 import com.myapplication.base.BaseActivity;
 import com.myapplication.ui.crop.Crop;
+import com.myapplication.util.volleyUtils.TextUtil;
 import com.myapplication.widget.DeleteEditText;
 
 import java.io.File;
@@ -56,7 +56,7 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
         etLoginName.addTextChangedListener(this);
         etLoginPass.addTextChangedListener(this);
         tvLoginForgetPass.setOnClickListener(this);
-        btnLogin.setOnTouchListener(this);
+        TextUtil.addTextTouchColor(btnLogin,R.color.appBarDark,R.color.appBar);
         btnLogin.setEnabled(false);
         btnLogin.setTextScaleX(1.2f);
         imgLoginWX.setOnClickListener(this);
@@ -100,24 +100,6 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
 
                 break;
         }
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        switch (v.getId()) {
-            case R.id.btn_login:
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    btnLogin.setBackgroundColor(getResources().getColor(
-                            R.color.deep_red));
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    v.performClick();
-                    btnLogin.setBackgroundColor(getResources().getColor(
-                            R.color.red));
-                }
-                break;
-        }
-
-        return false;
     }
 
     @Override
