@@ -1,6 +1,5 @@
 package com.myapplication.activity;
 
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -120,8 +119,4 @@ public class SplashActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return false;
-    }
 }

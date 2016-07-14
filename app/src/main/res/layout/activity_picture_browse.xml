@@ -20,7 +20,7 @@
         android:layout_marginBottom="@dimen/space_40"
         android:layout_marginTop="@dimen/space_40">
 
-        <com.myapplication.widget.autoscrollviewpager.AutoScrollViewPager
+        <com.myapplication.widget.viewpager.autoscrollviewpager.AutoScrollViewPager
             android:id="@+id/vp_picture_browse"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

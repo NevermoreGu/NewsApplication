@@ -34,7 +34,7 @@ import java.io.File;
 
 import butterknife.InjectView;
 
-public class MainActivity extends BaseActivity implements TabHost.OnTabChangeListener {
+public class MainActivity extends BaseActivity implements TabHost.OnTabChangeListener, View.OnTouchListener {
 
     @InjectView(R.id.toolbar)
     Toolbar toolBar;

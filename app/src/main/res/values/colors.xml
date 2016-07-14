@@ -2,7 +2,8 @@
 <resources>
 
     <color name="transparent">#00000000</color>
-    <color name="appBar">#e23a35</color>
+    <color name="appBar">#03a9f4</color>
+    <color name="appBarDark">#01579b</color>
 
     <!-- 常用颜色值 -->
     <color name="white40">#40FFFFFF</color>

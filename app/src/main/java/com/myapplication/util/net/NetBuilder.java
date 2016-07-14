@@ -13,7 +13,7 @@ public class NetBuilder {
         this.callBack = builder.callBack;
     }
 
-    public static class Builder<T> {
+    public static class Builder{
         private String url;
         private String param;
         private NetCallBack callBack;

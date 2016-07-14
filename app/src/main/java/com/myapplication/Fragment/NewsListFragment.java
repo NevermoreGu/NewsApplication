@@ -24,8 +24,8 @@ import com.myapplication.ui.loadmore.LoadMoreListViewContainer;
 import com.myapplication.util.GsonUtil;
 import com.myapplication.util.StringUtils;
 import com.myapplication.util.TDevice;
-import com.myapplication.widget.autoscrollviewpager.AutoScrollViewPager;
-import com.myapplication.widget.autoscrollviewpager.CirclePageIndicator;
+import com.myapplication.widget.viewpager.autoscrollviewpager.AutoScrollViewPager;
+import com.myapplication.widget.viewpager.autoscrollviewpager.CirclePageIndicator;
 
 import java.io.Serializable;
 import java.util.ArrayList;

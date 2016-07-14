@@ -2,14 +2,13 @@ package com.myapplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.myapplication.R;
 import com.myapplication.adapter.PictureBrowsePagerAdapter;
 import com.myapplication.base.BaseActivity;
 import com.myapplication.bean.ImageInfo;
-import com.myapplication.widget.autoscrollviewpager.AutoScrollViewPager;
+import com.myapplication.widget.viewpager.autoscrollviewpager.AutoScrollViewPager;
 
 import java.util.ArrayList;
 
@@ -48,8 +47,4 @@ public class PicturesBrowseActivity extends BaseActivity {
 
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return false;
-    }
 }

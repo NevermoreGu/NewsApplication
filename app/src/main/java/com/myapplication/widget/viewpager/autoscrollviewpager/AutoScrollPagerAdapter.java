@@ -1,4 +1,4 @@
-package com.myapplication.widget.autoscrollviewpager;
+package com.myapplication.widget.viewpager.autoscrollviewpager;
 
 import android.support.v4.view.PagerAdapter;
 import android.view.View;

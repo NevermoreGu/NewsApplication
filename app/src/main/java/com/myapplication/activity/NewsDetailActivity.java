@@ -1,6 +1,5 @@
 package com.myapplication.activity;
 
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,8 +38,4 @@ public class NewsDetailActivity extends BaseWebViewActivity {
         }
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return false;
-    }
 }

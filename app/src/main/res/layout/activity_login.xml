@@ -191,7 +191,7 @@
 
             <TextView
                 android:id="@+id/tv_login_register"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/space_10"
                 android:text="没有账号?赶紧注册"
