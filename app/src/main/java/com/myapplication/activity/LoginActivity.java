@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.myapplication.R;
 import com.myapplication.base.BaseActivity;
 import com.myapplication.ui.crop.Crop;
-import com.myapplication.util.volleyUtils.TextUtil;
+import com.myapplication.util.ViewUtil;
 import com.myapplication.widget.DeleteEditText;
 
 import java.io.File;
@@ -56,7 +56,7 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
         etLoginName.addTextChangedListener(this);
         etLoginPass.addTextChangedListener(this);
         tvLoginForgetPass.setOnClickListener(this);
-        TextUtil.addTextTouchColor(btnLogin,R.color.appBarDark,R.color.appBar);
+        ViewUtil.addTouchColor(btnLogin,R.color.appBarDark,R.color.appBar);
         btnLogin.setEnabled(false);
         btnLogin.setTextScaleX(1.2f);
         imgLoginWX.setOnClickListener(this);
@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
         String userPass = etLoginPass.getText().toString().trim();
         if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPass)) {
             btnLogin.setBackgroundColor(getResources().getColor(
-                    R.color.red));
+                    R.color.appBar));
             btnLogin.setEnabled(true);
         } else {
             btnLogin.setBackgroundColor(getResources().getColor(

@@ -1,13 +1,13 @@
-package com.myapplication.util.volleyUtils;
+package com.myapplication.util;
 
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.myapplication.base.BaseApplication;
 
-public class TextUtil {
+public class ViewUtil {
 
-    public static void addTextTouchColor(final View view, final int downColor, final int upColor) {
+    public static void addTouchColor(final View view, final int downColor, final int upColor) {
 
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -23,5 +23,6 @@ public class TextUtil {
                 return false;
             }
         });
+
     }
 }

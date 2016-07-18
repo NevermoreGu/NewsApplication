@@ -1,6 +1,18 @@
 <resources>
 
     <style name="AppTheme" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/appBar</item>
+        <item name="colorPrimaryDark">@color/appBarDark</item>
+        <item name="colorAccent">@color/appBarDark</item>
+        <item name="toolbarStyle">@style/MyToolbar</item>
+    </style>
+
+    <style name="MyToolbar"
+
+        parent="Widget.AppCompat.Toolbar">
+
+        <item name="contentInsetStart">0dp</item>
 
     </style>
+
 </resources>
