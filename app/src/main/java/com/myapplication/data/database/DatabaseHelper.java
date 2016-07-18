@@ -1,89 +1,70 @@
 package com.myapplication.data.database;
 
-import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.myapplication.base.Constants;
+import com.myapplication.data.model.Ribot;
+import com.squareup.sqlbrite.BriteDatabase;
+import com.squareup.sqlbrite.SqlBrite;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.util.Collection;
+import java.util.List;
 
-public  class DatabaseHelper extends SQLiteOpenHelper {
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-    private Context mContext;
-    final String TABLE_CITY_SQL = "CREATE TABLE IF NOT EXISTS "
+import rx.Observable;
+import rx.Subscriber;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
-            + Constants.CITY_TABLE_NAME + " (" + Constants.CITY_ID
+@Singleton
+public class DatabaseHelper {
 
-            + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+    private final BriteDatabase mDb;
 
-            + Constants.CITY_NAME + " TEXT,"
-
-            + Constants.CITY_PINYIN + " TEXT"
-
-            + ");";
-
-    public DatabaseHelper(Context context) {
-        super(context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
-        this.mContext = context;
+    @Inject
+    public DatabaseHelper(SQLiteOpenHelper sqLiteOpenHelper) {
+        mDb = SqlBrite.create().wrapDatabaseHelper(sqLiteOpenHelper, Schedulers.io());
     }
 
-    /**
-     * 初次调用getWritableDatabase时，如果数据库不存在才会执行onCreate方法
-     *
-     * @param db
-     */
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
-        db.execSQL(TABLE_CITY_SQL);
+    public BriteDatabase getBriteDb() {
+        return mDb;
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
-
-    /**
-     * Create database
-     */
-    public void createDataBase() throws IOException {
-        // 创建数据库
-        try {
-            File dir = new File(Constants.DATABASE_PATH);
-            if (!dir.exists()) {
-                dir.mkdirs();
+    public Observable<Ribot> setRibots(final Collection<Ribot> newRibots) {
+        return Observable.create(new Observable.OnSubscribe<Ribot>() {
+            @Override
+            public void call(Subscriber<? super Ribot> subscriber) {
+                if (subscriber.isUnsubscribed()) return;
+                BriteDatabase.Transaction transaction = mDb.newTransaction();
+                try {
+                    mDb.delete(Db.RibotProfileTable.TABLE_NAME, null);
+                    for (Ribot ribot : newRibots) {
+                        long result = mDb.insert(Db.RibotProfileTable.TABLE_NAME,
+                                Db.RibotProfileTable.toContentValues(ribot.profile()),
+                                SQLiteDatabase.CONFLICT_REPLACE);
+                        if (result >= 0) subscriber.onNext(ribot);
+                    }
+                    transaction.markSuccessful();
+                    subscriber.onCompleted();
+                } finally {
+                    transaction.end();
+                }
             }
-            File dbFile = new File(Constants.DATABASE_PATH + Constants.DATABASE_NAME);
-            if (dbFile.exists()) {
-                dbFile.delete();
-            }
-            // 复制assets中的db文件到DATABASE_PATH下
-            copyDataBase();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        });
     }
 
-    /**
-     * Copy database
-     */
-    private void copyDataBase() throws IOException {
-        InputStream is = mContext.getAssets().open(Constants.ASSETS_DATABASE_NAME);
-        String outFileName = Constants.DATABASE_PATH + Constants.DATABASE_NAME;
-        OutputStream output = new FileOutputStream(outFileName);
-        byte[] buffer = new byte[1024];
-        int length;
-        while ((length = is.read(buffer)) > 0) {
-            output.write(buffer, 0, length);
-        }
-        // Close the streams
-        output.flush();
-        output.close();
-        output.close();
+    public Observable<List<Ribot>> getRibots() {
+        return mDb.createQuery(Db.RibotProfileTable.TABLE_NAME,
+                "SELECT * FROM " + Db.RibotProfileTable.TABLE_NAME)
+                .mapToList(new Func1<Cursor, Ribot>() {
+                    @Override
+                    public Ribot call(Cursor cursor) {
+                        return Ribot.create(Db.RibotProfileTable.parseCursor(cursor));
+                    }
+                });
     }
+
 }

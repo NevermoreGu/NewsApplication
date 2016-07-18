@@ -12,13 +12,13 @@ import android.net.Uri;
 import android.support.v4.database.DatabaseUtilsCompat;
 
 import com.myapplication.base.Constants;
-import com.myapplication.data.database.DatabaseHelper;
+import com.myapplication.data.database.SuperSQLiteOpenHelper;
 
 import java.io.IOException;
 
 public class CitiesDBProvider extends ContentProvider {
 
-    private DatabaseHelper mOpenHelper;
+    private SuperSQLiteOpenHelper mOpenHelper;
     private static final String UNKNOWN_URI_LOG = "Unknown URI ";
     private static final UriMatcher URI_MATCHER;
 
@@ -54,7 +54,7 @@ public class CitiesDBProvider extends ContentProvider {
      */
     @Override
     public boolean onCreate() {
-        mOpenHelper = new DatabaseHelper(getContext());
+        mOpenHelper = new SuperSQLiteOpenHelper(getContext());
         try {
             mOpenHelper.createDataBase();
         } catch (IOException e) {

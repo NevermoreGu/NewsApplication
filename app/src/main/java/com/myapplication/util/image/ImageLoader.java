@@ -24,7 +24,7 @@ public abstract class ImageLoader {
         abstract Builder placeHolder(int value);
         abstract Builder wifiStrategy(int value);
         abstract Builder url(String value);
-        abstract Builder imgView(String value);
+        abstract Builder imgView(ImageView value);
 
         abstract ImageLoader build();
     }

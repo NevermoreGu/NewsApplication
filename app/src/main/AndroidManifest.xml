@@ -168,6 +168,7 @@
         <!--android:value="@string/facebook_app_id"/>-->
 
         <!--&lt;!&ndash; *************************    分享相关的注册 END **************************** &ndash;&gt;-->
+
     </application>
 
 </manifest>
