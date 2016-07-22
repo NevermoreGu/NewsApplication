@@ -82,6 +82,21 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
                 }
             }
         }
+
+//        NetBuilder netBuilder = new NetBuilder.Builder().url("http://test61.cpsdna.net:19080/saasapi/saasapi").param("{\"cmd\":\"checkLoadingConfigNeedUpdate\",\"params\":{\"pushTime\":\"2016-07-20 15:04:57\",\"client\":\"android\",\"resolvingPower\":\"1920*1080\"},\"auth\":{\"userName\":\"\",\"password\":\"\",\"mapType\":\"google\",\"appName\":\"xfinder4personal\"}}").callback(new NetCallBack() {
+//            @Override
+//            public void onResponse(String response) {
+//                String result = response;
+//            }
+//
+//            @Override
+//            public void onErrorResponse(Exception e) {
+//
+//            }
+//        }).build();
+//        VolleyNet volleyNet = VolleyNet.getInstance(MainActivity.this);
+//        volleyNet.addToRequestQueue("me",netBuilder);
+
     }
 
     public boolean isShortcutInstalled() {

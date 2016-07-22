@@ -7,15 +7,15 @@
     <com.myapplication.widget.NavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navigation_bar_height">
+        android:layout_height="@dimen/navigation_bar_height"
+        android:background="@color/appBar">
+
     </com.myapplication.widget.NavigationView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_20"
-        android:layout_marginLeft="@dimen/space_10"
-        android:layout_marginRight="@dimen/space_10"
+        android:layout_margin="@dimen/space_10"
         android:orientation="vertical">
 
         <LinearLayout
@@ -75,10 +75,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="@dimen/space_10"
-                        android:layout_toLeftOf="@+id/tv_login_forget_pass"
+                        android:layout_toLeftOf="@+id/img_pass_visible"
                         android:background="@null"
                         android:hint="@string/hint_password"
                         android:textSize="@dimen/text_size_16" />
+
+                    <com.myapplication.widget.PassVisibleCheckBox
+                        android:id="@+id/img_pass_visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:layout_toLeftOf="@+id/tv_login_forget_pass"
+                        android:button="@drawable/pass_word_visible"
+                        android:checked="false" />
 
                     <TextView
                         android:id="@+id/tv_login_forget_pass"
@@ -95,7 +105,7 @@
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="@dimen/space_40"
-            android:layout_marginTop="@dimen/space_20"
+            android:layout_marginTop="@dimen/space_10"
             android:background="@drawable/about_bg"
             android:text="@string/login"
             android:textColor="@color/gray"
@@ -207,11 +217,11 @@
     <ImageView
         android:id="@+id/result_image"
         android:layout_width="@dimen/space_100"
-        android:layout_height="@dimen/space_100"/>
+        android:layout_height="@dimen/space_100" />
 
     <Button
         android:id="@+id/btn_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="选择"/>
+        android:text="选择" />
 </LinearLayout>

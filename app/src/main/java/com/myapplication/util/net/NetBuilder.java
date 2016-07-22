@@ -7,7 +7,7 @@ public class NetBuilder {
     public String param;
     public NetCallBack callBack;
 
-    private NetBuilder(Builder builder) {
+    public NetBuilder(Builder builder) {
         this.url = builder.url;
         this.param = builder.param;
         this.callBack = builder.callBack;

@@ -16,6 +16,7 @@ import com.myapplication.base.BaseActivity;
 import com.myapplication.ui.crop.Crop;
 import com.myapplication.util.ViewUtil;
 import com.myapplication.widget.DeleteEditText;
+import com.myapplication.widget.PassVisibleCheckBox;
 
 import java.io.File;
 
@@ -27,6 +28,8 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
     DeleteEditText etLoginName;
     @InjectView(R.id.et_login_pass)
     DeleteEditText etLoginPass;
+    @InjectView(R.id.img_pass_visible)
+    PassVisibleCheckBox imgPassVisible;
     @InjectView(R.id.tv_login_forget_pass)
     TextView tvLoginForgetPass;
     @InjectView(R.id.btn_login)
@@ -56,13 +59,15 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
         etLoginName.addTextChangedListener(this);
         etLoginPass.addTextChangedListener(this);
         tvLoginForgetPass.setOnClickListener(this);
-        ViewUtil.addTouchColor(btnLogin,R.color.appBarDark,R.color.appBar);
+        ViewUtil.addTouchColor(btnLogin, R.color.appBarDark, R.color.appBar);
+        imgPassVisible.setPassVisible(etLoginPass);
         btnLogin.setEnabled(false);
         btnLogin.setTextScaleX(1.2f);
         imgLoginWX.setOnClickListener(this);
         imgLoginSina.setOnClickListener(this);
         imgLoginQQ.setOnClickListener(this);
         tvLoginRegister.setOnClickListener(this);
+        imgPassVisible.setOnClickListener(this);
         btnPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +102,9 @@ public class LoginActivity extends BaseActivity implements TextWatcher {
 
                 break;
             case R.id.img_login_qq:
+
+                break;
+            case R.id.img_pass_visible:
 
                 break;
         }
