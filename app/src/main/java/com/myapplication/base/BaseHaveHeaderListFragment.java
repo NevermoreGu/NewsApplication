@@ -90,7 +90,7 @@ public abstract class BaseHaveHeaderListFragment<T1 extends Entity, T2 extends E
         private final WeakReference<Context> mContext;
 
         private ReadHeadCacheTask(Context context) {
-            mContext = new WeakReference<Context>(context);
+            mContext = new WeakReference<>(context);
         }
 
         @Override

@@ -34,6 +34,9 @@ import java.io.InputStream;
 
 public class ImageUtils {
 
+
+
+
     public final static String SDCARD_MNT = "/mnt/sdcard";
     public final static String SDCARD = "/sdcard";
 

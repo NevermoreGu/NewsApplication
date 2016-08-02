@@ -84,7 +84,6 @@
         </activity>
         <activity android:name="com.myapplication.ui.crop.CropImageActivity" />
         <activity android:name=".activity.TestActivity"></activity>
-        <activity android:name=".activity.MyPositionActivity"></activity>
         <!--&lt;!&ndash;第三方&ndash;&gt;-->
         <!--&lt;!&ndash;友盟社会化分享&ndash;&gt;-->
         <!--<meta-data-->

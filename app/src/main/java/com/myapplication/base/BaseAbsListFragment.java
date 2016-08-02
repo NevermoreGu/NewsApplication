@@ -274,7 +274,7 @@ public abstract class BaseAbsListFragment<T1 extends Entity, T2 extends Entity, 
         private final WeakReference<Context> mContext;
 
         private CacheTask(Context context) {
-            mContext = new WeakReference<Context>(context);
+            mContext = new WeakReference<>(context);
         }
 
         @Override

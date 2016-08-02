@@ -8,7 +8,7 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-public abstract class NetUICallBack extends NetCallBack {
+public class NetUICallBack extends NetCallBack {
 
     @Override
     public void onStart() {}

@@ -6,34 +6,10 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.TextUtils;
-import android.view.View;
 
-import com.myapplication.widget.MaterialDialog;
 
 public class DialogHelp {
 
-    public static void showDialog(Context mContext, String title, String message, String positiveText, String negativeText) {
-        final MaterialDialog mMaterialDialog = new MaterialDialog(mContext);
-        mMaterialDialog.setTitle(title);
-        mMaterialDialog.setMessage(message);
-        mMaterialDialog.setPositiveButton(positiveText, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mMaterialDialog.dismiss();
-            }
-        });
-        mMaterialDialog.setNegativeButton(negativeText, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mMaterialDialog.dismiss();
-            }
-        });
-        mMaterialDialog.show();
-    }
-
-    public static void showDialog(Context mContext, String title, String message) {
-        showDialog(mContext, title, message, "确定", "取消");
-    }
 
     /**
      * 获取一个dialog

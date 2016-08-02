@@ -112,7 +112,7 @@ public abstract class BaseDetailActivity<T extends Entity> extends BaseActivity 
         private final WeakReference<Context> mContext;
 
         private CacheTask(Context context) {
-            mContext = new WeakReference<Context>(context);
+            mContext = new WeakReference<>(context);
         }
 
         @Override

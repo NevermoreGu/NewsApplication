@@ -1,5 +1,6 @@
 package com.myapplication.util.net;
 
+import com.myapplication.api.ApiService;
 import com.myapplication.model.BaseModel;
 
 import java.io.IOException;
@@ -20,26 +21,30 @@ public class RetrofitNet<T> {
     private NetBuilder netBuilder;
     private Retrofit retrofit;
 
-    private RetrofitNet(NetBuilder netBuilder) {
+    public RetrofitNet(NetBuilder netBuilder) {
         retrofit = new Retrofit.Builder()
                 .baseUrl(netBuilder.url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        this.netBuilder = netBuilder;
     }
 
-    public static RetrofitNet getInstance(NetBuilder netBuilder) {
-        if (mInstance == null) {
-            mInstance = new RetrofitNet(netBuilder);
-        }
-        return mInstance;
+//    public RetrofitNet getInstance(NetBuilder netBuilder) {
+//        if (mInstance == null) {
+//            mInstance = new RetrofitNet(netBuilder);
+//        }
+//        return mInstance;
+//    }
+
+    public ApiService getService() {
+        return retrofit.create(ApiService.class);
     }
 
     public void addToRequestQueue(Call<BaseModel<T>> call) {
 
-        if (retrofit == null) {
+        if (netBuilder == null) {
             return;
         }
-
         final NetCallBack netCallBack = netBuilder.callBack;
 
         netCallBack.onStart();
@@ -47,8 +52,8 @@ public class RetrofitNet<T> {
         call.enqueue(new Callback<BaseModel<T>>() {
             @Override
             public void onResponse(Call<BaseModel<T>> call, Response<BaseModel<T>> response) {
-
                 if (response.raw().code() == 200) {
+                    netCallBack.onFinish();
                     if (response.body().result == 0) {
 
                         netCallBack.onResponse(response.body().toString());
@@ -60,12 +65,12 @@ public class RetrofitNet<T> {
                 } else {
                     onFailure(call, new RuntimeException("response error,detail = " + response.raw().toString()));
                 }
-                netCallBack.onFinish();
+
             }
 
             @Override
             public void onFailure(Call<BaseModel<T>> call, Throwable t) {
-
+                netCallBack.onFinish();
                 String error = "";
                 if (t instanceof ConnectException) {// 不能在指定的ip和端口上建立连接
                     error = "";
@@ -81,7 +86,7 @@ public class RetrofitNet<T> {
                     error = "未知错误";
                 }
                 onFail(error);
-                netCallBack.onFinish();
+
             }
 
         });

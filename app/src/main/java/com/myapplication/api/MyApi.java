@@ -13,9 +13,6 @@ import com.myapplication.util.volleyUtils.StringRequestGet;
 import com.myapplication.util.volleyUtils.VolleyUtils;
 import com.myapplication.util.volleyUtils.XmlRequestGet;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -82,16 +79,9 @@ public class MyApi {
                 Constants.NEWSSCROLL);
     }
 
-    //苏轼   水调歌头
-    //明月几时有，把酒问青天，不知天上宫阙，今夕是何年。我欲乘风归去，又恐琼楼玉宇，高处不胜寒，起舞弄清影，何似在人间。
-    // 转朱阁，低绮户，照无眠，不应有恨，何事长向别时圆，人有悲欢离合，月有阴晴圆缺，此事古难全，但愿人长久，千里共婵娟，
-
-    //苏轼 江城子
-    //十年生死两茫茫，不思量，自难忘。千里孤坟，无处话凄凉，纵使相逢应不识，尘满面，鬓如霜。
-    //夜来幽梦忽还乡，小轩窗，正梳妆。相顾无言，惟有泪千行。料得年年肠断处，明月夜，短松冈。
-
     /**
      * videos list
+     *
      * @param urlPart
      * @param id
      * @param pageIndex
@@ -108,21 +98,14 @@ public class MyApi {
                 Constants.VIDEOSLIST);
     }
 
-    public static String firstPageData4laso(String vspId, String authId, String operUserId) {
-        JSONObject root = new JSONObject();
-        JSONObject params = new JSONObject();
-        try {
-            root.put("cmd", "rightUpperData4laso");
-            root.put("params", params);
-
-            params.put("vspId", vspId);
-            params.put("authId", authId);
-            params.put("operUserId", operUserId);
-            return root.toString();
-        } catch (JSONException e) {
-
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    public static void login(String userName, String passWord, Callback callback) {
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .addConverterFactory(GsonConverterFactory.create())//解析方法
+//                //这里建议：- Base URL: 总是以/结尾；- @Url: 不要以/开头
+//                .baseUrl("http://open.tmtsp.com/app/")
+//                .build();
+//        ApiService apiService = retrofit.create(ApiService.class);
+//        Call<User> userCall = apiService.login(userName, passWord);
+//        userCall.enqueue(callback);
+//    }
 }

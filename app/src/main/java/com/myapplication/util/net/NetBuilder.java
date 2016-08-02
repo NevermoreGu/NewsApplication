@@ -1,6 +1,8 @@
 package com.myapplication.util.net;
 
 
+import com.myapplication.util.StringUtils;
+
 public class NetBuilder {
 
     public String url;
@@ -13,7 +15,7 @@ public class NetBuilder {
         this.callBack = builder.callBack;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String url;
         private String param;
         private NetCallBack callBack;
@@ -30,6 +32,9 @@ public class NetBuilder {
         }
 
         public Builder callback(NetCallBack callBack) {
+            if (StringUtils.isEmpty(url)) {
+                this.url = "";
+            }
             this.callBack = callBack;
             return this;
         }

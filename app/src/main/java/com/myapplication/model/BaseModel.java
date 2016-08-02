@@ -1,8 +1,11 @@
 package com.myapplication.model;
 
-public abstract class BaseModel<T> {
+import com.google.gson.annotations.SerializedName;
 
-    protected T details;
+public class BaseModel<T> {
+
+    @SerializedName("detail")
+    public T detail;
 
     public String cmd;
     public int result;
